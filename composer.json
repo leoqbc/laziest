@@ -1,0 +1,16 @@
+{
+  "name" : "laziest",
+  "autoload": {
+  	"psr-4" : {
+  		"Laziest\\" : "src/",
+  		"App\\" : "app/"
+  	}
+  },
+  "require" : {
+    "respect/validation" : "0.6.x"
+  },
+  "repositories" : [ {
+    "type" : "composer",
+    "url" : "https://packagist.org/"
+  } ]
+}
