@@ -21,7 +21,7 @@ class Robot
     
     public function talk ($words)
     {
-        $this->responses .= $words;
+        $this->responses .= $wordrs;
         return $this;
     }
 
@@ -32,44 +32,15 @@ class Robot
     }
 }
 
-$calls = new CallCollection(new Validator);
+$calls = new CallCollection(new Robot);
 
-$str_calls = [
-    'string'    => [],
-    'alnum'     => [],
-    'length'    => [5, 20]
-];
+$calls2 = new CallCollection(new Validator);
 
-$string = $calls->inlineTrigger($str_calls);
 
-$calls->mountCalls([
-    'name' => $str_calls,
-    'age' => [
-        'int'       => [],
-        'positive'  => [],
-        'between'   => [18, 35, true]
-    ],
-    'toy' => [
-        'arr' => [],
-        'key.a' => ['name'],
-        'key.b' => ['type', $string],
-        'key.c' => ['wheels', $calls->inlineTrigger([
-                'int' => [],
-                'between' => [2, 8, true]
-        ])]
-    ]
+$calls2->mountCalls([
+    'string' => [],
+    'length' => [5, 10],
+    'validate' => ['Leonardo123123']
 ]);
 
-$toy = [
-  'name'    => 'Dark Rebel',
-  'type'    => 'Motorcycle',
-  'wheels'  => 4
-];
-
-$calls->groupTrigger();
-
-var_dump($calls->name->validate('Leonardo'));
-var_dump($calls->age->validate(32));
-var_dump($calls->toy->validate($toy));
-
-
+var_dump($calls2->inlineTrigger());
